@@ -1,4 +1,4 @@
 ## VimPlugin 研究
-### More to come
+### Please just download the vimrc file
 ### BiliBili ID: LeisureLinux
 ### 
