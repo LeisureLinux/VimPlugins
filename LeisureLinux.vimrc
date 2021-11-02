@@ -5,8 +5,13 @@
 " **********************************************************
 "
 " Note 0: 如何使用本文件？How to use this file?
-"  * $ git clone xxx
-"  * $
+"  * Step 1: 首先备份你的 ~/.vimrc 文件
+"  * Step 2: 下载本文件：$ curl -x socks5://yourProxyServer:port/ -fLo ~/.vimrc \
+"       https://raw.githubusercontent.com/LeisureLinux/VimPlugins/master/LeisureLinux.vimrc 
+"  * Step 3: 如果还没有安装 vim-plug 插件管理器，安装
+"        $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  * Step 4: 安装所有插件: $ vim +PlugInstall +qall --headless
 "
 " Note 1: Ctr-D & Ctr-]
 "  * 为了更好的让初学者使用好 vim ，特别加本注释以便理解
