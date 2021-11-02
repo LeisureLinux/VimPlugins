@@ -1,34 +1,37 @@
-" **********************************************************
-" LeisureLinux [In both BiliBili ID & WeChat ID] Vim Notes:
-"                 -- Copyright or Copyleft, that is a thing.
-"                 -- 2021.11.02, Shanghai, China
-" **********************************************************
+" ****************************************************************
+" * LeisureLinux [In both BiliBili ID & WeChat ID] Vim Notes     *
+" *                -- Copyright or Copyleft, that is a question. *
+" *                -- 2021.11.02, Shanghai, China                *
+" ****************************************************************
 "
-" Note 0: 如何使用本文件？How to use this file?
-"  * Step 1: 首先备份你的 ~/.vimrc 文件
-"  * Step 2: 下载本文件：$ curl -x socks5://yourProxyServer:port/ -fLo ~/.vimrc \
+" Tip 0: 如何使用本文件？(How to use this file?)
+"  * Step 1: 备份 ~/.vimrc 文件(Backup ~/.vimrc file first)
+"  * Step 2: 下载本文件：(Download this file)
+"  *      $ curl -fLo ~/.vimrc \
+"           [ -x socks5://yourProxyServer:port/ \ ] 
 "       https://raw.githubusercontent.com/LeisureLinux/VimPlugins/master/LeisureLinux.vimrc 
-"  * Step 3: 如果还没有安装 vim-plug 插件管理器，安装
-"        $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"  * Step 4: 安装所有插件: $ vim +PlugInstall +qall --headless
+"  * Step 3: 安装 vim-plug 插件管理器(Install vim-plug, the manager)
+"         $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  * Step 4: 安装所有插件(Run :PlugInstall to install all Plugins)
+"         $ vim +PlugInstall +qall --headless
 "
-" Note 1: Ctr-D & Ctr-]
+" Tip 1: Ctr-D & Ctr-]
 "  * 为了更好的让初学者使用好 vim ，特别加本注释以便理解
 "  * :h <搜索字符>Ctr-D 是万能药，例如： :h html<Ctr-D>
 "  * 帮助内的高亮字符，都可以按 Ctr+] 进入
 "  * 如果不理解里面的任何词汇，只需要 :h <keywords> 即可
 "
-" Note 2: 选择不同的颜色主题(colorscheme)
+" Tip 2: 选择不同的颜色主题(colorscheme)
 "  * :h colo 加空格，再按 Ctr-D 就可以选择不同的颜色主题了
 "  * :h colo 直接回车则显示当前默认 colorscheme
 "
-" Note 3: 插件相关的命令
+" Tip 3: 插件相关的命令
 "  * 操作系统启动时可以用 -c 或者 + 后加 vim 命令
 "  * $ vim +PlugInstall +qall --headless  // 常用的安装插件的办法
 "  * 其他插件命令： :PlugStatus :PlugUpdate :PlugClean :PlugUpgrade
 " 
-" Note 4: 不要被 Tab 搞混了
+" Tip 4: 不要被 Tab 搞混了
 "  * Ctr-W + T 可以把窗口切换成全屏
 "  * :tabs 可以列出所有的 Tab
 "  * gt 在所有的 Tab 之间跳转，Ctr-W + w 则在窗口之间跳转
@@ -37,7 +40,7 @@
 "  * 选中文件 Ctr-O 会提示打开的位置
 "  * NERDTree 插件， Ctr-N 选中文件，按 t 才是在 Tab 打开
 " 
-" Note 5: 调试（PDAC：Plan-Do-Act-Check 方法论）
+" Tip 5: 调试（PDAC：Plan-Do-Act-Check 方法论）
 "  * 查看加载的脚本：      :scripts
 "  * 查看最近的消息：      :messages 
 "  * 查看所有映射的键：    :map
@@ -112,12 +115,12 @@ call plug#begin('~/.vim/plugged')
   "
   " Clang Coding Style 帮助:h clang-format
   Plug 'rhysd/vim-clang-format'
-  " 模糊搜索支持， 帮助h: fzf
+  " 模糊搜索支持， 帮助:h fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   " 对齐, 帮助:h easy-align
   Plug 'junegunn/vim-easy-align'
-  " 必备：按下 Ctr-P 模糊搜索文件， :h ctrlp 
+  " 必备：按下 Ctr-P 模糊搜索文件，帮助:h ctrlp 
   Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
   " To be researched
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -134,7 +137,7 @@ call plug#begin('~/.vim/plugged')
   "必备，树形目录<Ctr-N>，需要字体支持 帮助:h nerdtree
   "不要忘记了，终端的字体也要用 Nerd Fonts
   Plug 'scrooloose/nerdtree'
-  " 用 \cc 添加注释，:h nerd 
+  " 用 \cc 添加注释，帮助:h nerd 
   Plug 'scrooloose/nerdcommenter'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   " Plug 'christoomey/vim-tmux-navigator'
@@ -142,10 +145,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
   " 语言支持， 帮助 :h polyglot
   Plug 'sheerun/vim-polyglot'
-  "必备：各大区块显示 :h vim-airline
+  "必备：各大区块显示 帮助:h vim-airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  "显示开发图标，帮助h: devicons
+  "显示开发图标，帮助:h devicons
   "安装 Nerd Font 兼容的字体或者自己打补丁
   "设置终端字体也必须为 Nerd 兼容 (或者设置 'guifont' 如果使用的是GUI 版本).
   "一定要设置 set encoding=utf8
