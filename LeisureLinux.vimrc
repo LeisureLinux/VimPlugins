@@ -152,7 +152,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   " Plug 'christoomey/vim-tmux-navigator'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }"
+  " post install (yarn install | npm install) then load plugin only for editing supported files
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
   " 语言支持， 帮助 :h polyglot
   Plug 'sheerun/vim-polyglot'
   "必备：各大区块显示 帮助:h vim-airline
