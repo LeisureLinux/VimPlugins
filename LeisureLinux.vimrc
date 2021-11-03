@@ -4,6 +4,11 @@
 " *                -- 2021.11.02, Shanghai, China                *
 " ****************************************************************
 "
+" If nvim, put below three lines into ~/.config/nvim/init.vim
+" set runtimepath^=~/.vim runtimepath+=~/.vim/after
+" let &packpath = &runtimepath
+" source ~/.vimrc
+"
 " Tip 0: 如何使用本文件？(How to use this file?)
 "  * Step 1: 备份 ~/.vimrc 文件(Backup ~/.vimrc file first)
 "  * Step 2: 下载本文件：(Download this file)
@@ -59,6 +64,12 @@ let g:indentLine_color_term = 239
 
 " GVim
 let g:indentLine_color_gui = '#A4E57E'
+set guifont=DroidSansMono\ Nerd\ Font:h16
+" Full screen support
+set guioptions-=T  "remove toolbar
+set guioptions-=m  "remove menu bar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 
 " none X terminal
 let g:indentLine_color_tty_light = 7 " (default: 4)
@@ -99,7 +110,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   " Cmake 项目支持，帮助:h cmake 
   Plug 'cdelledonne/vim-cmake' "cmake 
-  "
   " sparkup 暂时无帮助
   Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
   "
