@@ -50,9 +50,14 @@
 "  * 查看最近的消息：      :messages 
 "  * 查看所有映射的键：    :map
 "  * 检查配置健康状态：    :checkhealth 
+"  * 关于 debug 的帮助      :h debug
 "  * 如果遇到有些插件冲突需要调试，关闭所有插件可以用
 "  * $ vim -u NONE
 " 
+" Tip 6: 其他
+" 默认的 <Leader> 是 "\"，例如格式化代码是 \p
+"  * let mapleader = ","
+"  * set timeoutlen = 1000
 " **********************************************************
 "
 " 设置帮助文档语言为中文： cn
@@ -81,6 +86,8 @@ let g:indentLine_bgcolor_gui = '#FF5F00'
 
 set nocompatible              
 filetype on
+" 加载 vim-prettier from ~/.vim/pack/plugins/start
+packloadall
 
 " **********************************************************
 " * 如果你要使用 Vundle 来安装，请使用本段内注释掉的语句
