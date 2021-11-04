@@ -4,11 +4,12 @@
 " *                -- 2021.11.02, Shanghai, China                *
 " ****************************************************************
 "
+" 为更好的让初学者用好 Vim 插件 ，特别加注释，一个文档全搞定
 " If nvim, put below three lines into ~/.config/nvim/init.vim
 " set runtimepath^=~/.vim runtimepath+=~/.vim/after
 " let &packpath = &runtimepath
 " source ~/.vimrc
-"
+" ################################################################
 " Tip 0: 如何使用本文件？(How to use this file?)
 "  * Step 1: 备份 ~/.vimrc 文件(Backup ~/.vimrc file first)
 "  * Step 2: 下载本文件：(Download this file)
@@ -20,13 +21,11 @@
 "            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "         ## 请注意 vim-prettier 的安装需要去 packpath 下                   
 "  * Step 4: 安装所有插件(Run :PlugInstall to install all Plugins)
-"         $ vim +PlugInstall +qall --headless
+"         ## 选项一：$ vim +PlugInstall +qall --headless
 "         ## 选项二：如果有网络问题，可以直接下载已经打包好的文件(不保证最新)： 
-"         https://github.com/LeisureLinux/VimPlugins/releases/download/v0.2.1/LeisureLinux_Plugins.tar.xz
-"         ## 直接解压： $ tar xJf <filename>  -C ~/.vim
+"         https://github.com/LeisureLinux/VimPlugins/releases/download/v0.2.1/LeisureLinux_Plugins.tar.xz，然后直接解压： $ tar xf <filename>  -C ~/.vim
 "
 " Tip 1: Ctr-D & Ctr-]
-"  * 为了更好的让初学者使用好 vim ，特别加本注释以便理解
 "  * :h <搜索字符>Ctr-D 是万能药，例如： :h html<Ctr-D>
 "  * 帮助内的高亮字符，都可以按 Ctr+] 进入
 "  * 如果不理解里面的任何词汇，只需要 :h <keywords> 即可
@@ -54,12 +53,12 @@
 "  * 查看最近的消息：      :messages 
 "  * 查看所有映射的键：    :map
 "  * 检查配置健康状态：    :checkhealth 
-"  * 关于 debug 的帮助      :h debug
+"  * 关于 debug 的帮助      :h debug ；启动 Debug $ vim -D 
 "  * 如果遇到有些插件冲突需要调试，关闭所有插件可以用
-"  * $ vim -u NONE
+"      $ vim -u NONE
 " 
 " Tip 6: 其他
-" 默认的 <Leader> 是 "\"，例如格式化代码是 \p
+"   默认的 <Leader> 是 "\"，例如格式化代码是 \p
 "  * let mapleader = ","
 "  * set timeoutlen = 1000
 " **********************************************************
@@ -88,8 +87,6 @@ let g:indentLine_color_dark = 1 " (default: 2)
 let g:indentLine_bgcolor_term = 202
 let g:indentLine_bgcolor_gui = '#FF5F00'
 
-set nocompatible              
-filetype on
 " 加载 vim-prettier from ~/.vim/pack/plugins/start
 packloadall
 
@@ -113,6 +110,8 @@ call plug#begin('~/.vim/plugged')
   " 中文帮助
   Plug 'yianwillis/vimcdoc'
   "
+  "SQL Format
+  Plug 'b4b4r07/vim-sqlfmt'
   "需要 ctags 支持的代码标签支持，先生成 tags 文件，帮助:h taglist
   Plug 'vim-scripts/taglist.vim' 
   "Git 仓库管理，帮助:h fugitive
@@ -134,8 +133,12 @@ call plug#begin('~/.vim/plugged')
   " For commentary，是不是会有冲突？
   " Plug 'tpope/vim-commentary'
   "
+  "Golang Support
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   " Clang Coding Style 帮助:h clang-format
   Plug 'rhysd/vim-clang-format'
+  "CSV File Support
+  Plug 'chrisbra/csv.vim'
   " 模糊搜索支持， 帮助:h fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -164,9 +167,8 @@ call plug#begin('~/.vim/plugged')
   " Plug 'christoomey/vim-tmux-navigator'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   " post install (yarn install | npm install) then load plugin only for editing supported files
-  Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+  " 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
   " 语言支持， 帮助 :h polyglot
   Plug 'sheerun/vim-polyglot'
   "必备：各大区块显示 帮助:h vim-airline
@@ -190,11 +192,12 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " taglist flag
-" let Tlist_Inc_Winwidth = 0
+let Tlist_Inc_Winwidth = 0
+let g:sqlfmt_command = "sqlfmt"
 
 "au User lsp_setup call lsp#register_server({
     "\ 'name': 'php',
-    "\ 'cmd': {server_info->['php', expand('/home/axu/vendor/bin/php-language-server.php')]},
+    "\ 'cmd': {server_info->['php', expand('$HOME/vendor/bin/php-language-server.php')]},
     "\ 'whitelist': ['php'],
     "\ })
 "autocmd FileType php setlocal omnifunc=lsp#complete
@@ -204,10 +207,12 @@ nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
+set nocompatible              
+filetype on
 set mouse=a
 set number
 set hidden
-"set cursorline
+set cindent
 set autoindent
 set tabstop=4
 set expandtab
@@ -216,6 +221,7 @@ set shiftwidth=4
 set encoding=utf8
 set history=5000
 set clipboard=unnamedplus
+"set cursorline
 
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
@@ -275,8 +281,7 @@ vmap <C-x> d<Esc>i
 " map <C-v> pi
 " imap <C-v> <Esc>pi
 
-set cindent
-colorscheme meta5
+colorscheme spring
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -433,7 +438,6 @@ let g:airline_statusline_ontop=0
 let g:airline_theme='base16_twilight'
 let g:airline#extensions#tabline#formatter = 'default'
 
-"
 nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
 nnoremap <c-x> :bp \|bd #<cr>
