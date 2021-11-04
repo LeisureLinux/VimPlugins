@@ -18,8 +18,12 @@
 "  * Step 3: 安装 vim-plug 插件管理器(Install vim-plug, the manager)
 "         $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"         ## 请注意 vim-prettier 的安装需要去 packpath 下                   
 "  * Step 4: 安装所有插件(Run :PlugInstall to install all Plugins)
 "         $ vim +PlugInstall +qall --headless
+"         ## 选项二：如果有网络问题，可以直接下载已经打包好的文件(不保证最新)： 
+"         https://github.com/LeisureLinux/VimPlugins/releases/download/v0.2.1/LeisureLinux_Plugins.tar.xz
+"         ## 直接解压： $ tar xJf <filename>  -C ~/.vim
 "
 " Tip 1: Ctr-D & Ctr-]
 "  * 为了更好的让初学者使用好 vim ，特别加本注释以便理解
